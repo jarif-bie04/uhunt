@@ -9,4 +9,7 @@ for _ in range(T):
         if sum + coin_value[i] < coin_value[i+1]:
             coin_count += 1
             sum += coin_value[i]
-    print(coin_count)
+    if len(set(coin_value)) == 1:
+        print(1)
+    else:
+        print(coin_count)
