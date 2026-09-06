@@ -1,43 +1,26 @@
-ignore = list()
-titles = list()
+T = int(input())
+for case in range(T):
+    n, P, Q = map(int, input().split())
+    egg = list(map(int, input().split()))
+    egg.sort()
+    count = 0
 
-reading_titles = False
-
-while True:
-    try:
-        line = input()
-    except EOFError:
-        break
-
-    if line == "::":
-        reading_titles = True
-        continue
-
-    if reading_titles:
-        titles.append(line)
-    else:
-        ignore.append(line.lower())
-
-result = list()
-
-for t in titles:
-    words = t.split()
-    for i in range(len(words)):
-        if words[i].lower() in ignore:
-            continue
-
-        keyword = words[i].lower()
-
-        new_words = list()
-
-        for w in words:
-            new_words.append(w.lower())
-
-        new_words[i] = keyword.upper()
-        new_titles = " ".join(new_words)
-        result.append((keyword,new_titles))
-
-result.sort(key=lambda x: x[0])
-
-for keyword, title in result:
-    print(title)
+    i = 0
+    while i < n - 1:
+        if egg[i] + egg[i+1] <= Q and (i + (i+1)) < P:
+            count += 2
+            Q -= (egg[i] + egg[i+1])
+            P -= 2
+            i += 1
+        else:
+            i += 1
+    if count == 0:
+        i = 0
+        while i < n:
+            if egg[i] <= Q and i < P:
+                count += 1
+                Q -= egg[i]
+                P -= 1
+            i += 1
+        
+    print(f"Case {case + 1}: {count}")
