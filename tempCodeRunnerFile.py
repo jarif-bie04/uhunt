@@ -1,26 +1,29 @@
-T = int(input())
-for case in range(T):
-    n, P, Q = map(int, input().split())
-    egg = list(map(int, input().split()))
-    egg.sort()
-    count = 0
+def is_prime(n):
+#     if n < 2:
+#         return False
+#     for i in range(2, int(n ** 0.5) + 1):
+#         if n % i == 0:
+#             return False
+#     return True
 
-    i = 0
-    while i < n - 1:
-        if egg[i] + egg[i+1] <= Q and (i + (i+1)) < P:
-            count += 2
-            Q -= (egg[i] + egg[i+1])
-            P -= 2
-            i += 1
-        else:
-            i += 1
-    if count == 0:
-        i = 0
-        while i < n:
-            if egg[i] <= Q and i < P:
-                count += 1
-                Q -= egg[i]
-                P -= 1
-            i += 1
-        
-    print(f"Case {case + 1}: {count}")
+# prime = list()
+# for i in range(2, 1121):
+#     if is_prime(i):
+#         prime.append(i)
+
+# dp = list()
+# for _ in range(15):
+#     dp.append([0] * 1121)
+
+# dp[0][0] = 1
+# for p in prime:
+#     for j in range(14, 0, -1):
+#         for s in range(1120, p - 1, -1):
+#             dp[j][s] += dp[j - 1][s - p]
+
+# while True:
+#     n, k = map(int, input().split())
+#     if n == 0 and k == 0:
+#         break
+
+#     print(dp[k][n])
