@@ -11,19 +11,19 @@ for i in range(2, 1121):
     if is_prime(i):
         prime.append(i)
 
-dp = list()
+tab = list()
 for _ in range(15):
-    dp.append([0] * 1121)
+    tab.append([0] * 1121)
 
-dp[0][0] = 1
+tab[0][0] = 1
 for p in prime:
-    for j in range(14, 0, -1):
-        for s in range(1120, p - 1, -1):
-            dp[j][s] += dp[j - 1][s - p]
+    for k in range(14, 0, -1):
+        for n in range(1120, p - 1, -1):
+            tab[k][n] += tab[k - 1][n - p]
 
 while True:
     n, k = map(int, input().split())
     if n == 0 and k == 0:
         break
 
-    print(dp[k][n])
+    print(tab[k][n])
